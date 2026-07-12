@@ -85,7 +85,13 @@ html {
 }
 
 body {
-  background-color: var(--background);
+  /* Orman kimliği: simsiyahtan kopkoyu yeşile süzülen sabit zemin. */
+  background-color: #020504;
+  background-image:
+    radial-gradient(60rem 42rem at 85% -10%, rgba(16, 64, 43, 0.28), transparent 60%),
+    radial-gradient(50rem 36rem at -12% 45%, rgba(9, 46, 30, 0.22), transparent 60%),
+    radial-gradient(72rem 50rem at 50% 115%, rgba(12, 52, 34, 0.25), transparent 60%);
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

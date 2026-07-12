@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useLang } from "@/context/LanguageContext";
 import { ScrollTrigger } from "@/lib/gsap";
 import { SmoothScroll } from "@/components/cinematic/SmoothScroll";
-import { ShaderBackground } from "@/components/cinematic/ShaderBackground";
 import { NatureSection } from "@/components/cinematic/NatureSection";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
@@ -27,7 +26,6 @@ export function SiteWrapper() {
 
   return (
     <SmoothScroll>
-      <ShaderBackground />
       <Navbar />
       <main className="relative z-10">
         <HeroSection />

@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { Send, Mail, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/brand-icons";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { useLang } from "@/context/LanguageContext";
 import { socialLinks } from "@/lib/i18n";
 
@@ -34,9 +33,6 @@ export function ContactSection() {
     (_, contextSafe) => {
       const section = sectionRef.current;
       if (!section) return;
-
-      // Final: arkaplan shader'ı kapanış için yeniden uyanır.
-      registerShaderMood(section, { intensity: 0.8, yScale: 0.5, distortion: 0.05 });
 
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -105,7 +101,7 @@ export function ContactSection() {
   );
 
   return (
-    <section id="contact" ref={sectionRef} className="relative bg-[#050505] px-6 py-28 md:py-40">
+    <section id="contact" ref={sectionRef} className="relative px-6 py-28 md:py-40">
       <div className="mx-auto w-full max-w-6xl">
         <span data-contact-fade className="text-xs font-medium uppercase tracking-[0.3em] text-neutral-500">
           {contact.tag}
@@ -203,7 +199,7 @@ export function ContactSection() {
                   <button
                     type="submit"
                     data-magnetic
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-neutral-200"
+                    className="inline-flex items-center gap-2 rounded-full bg-emerald-300 px-8 py-3.5 text-sm font-semibold text-emerald-950 transition-colors hover:bg-emerald-200"
                   >
                     <Send className="h-4 w-4" />
                     {contact.send}

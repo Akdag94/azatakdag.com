@@ -59,6 +59,12 @@ export const translations = {
       internalLabel: "Dahili sistem — link paylaşılmıyor",
       items: [
         {
+          name: "Plankur",
+          category: "SaaS / Randevu",
+          description: "İşletmeler için geliştirdiğim web tabanlı randevu takip sistemi: randevu, müşteri ve takvim yönetimi. Canlı ortamda çalışıyor.",
+          highlights: ["Randevu Yönetimi","Müşteri Takibi","Takvim"],
+        },
+        {
           name: "Greennova",
           category: "AgriTech / Web",
           description: "Greennova'nın dijital yüzü. Web sitesinin geliştirme ve bakımını üstleniyor, şirketin tüm bilgi işlem süreçlerini ve dijital altyapısını yönetiyorum.",
@@ -81,12 +87,6 @@ export const translations = {
           category: "POS / Dijital Menü",
           description: "Havuz başı kafe için geliştirdiğim dijital menü ve sipariş sistemi: kategorili ürün yönetimi, görsel menü ve fiyatlandırma. Canlıda kullanımda.",
           highlights: ["Dijital Menü","Sipariş & POS","Canlıda"],
-        },
-        {
-          name: "Plankur",
-          category: "SaaS / Randevu",
-          description: "İşletmeler için geliştirdiğim web tabanlı randevu takip sistemi: randevu, müşteri ve takvim yönetimi. Canlı ortamda çalışıyor.",
-          highlights: ["Randevu Yönetimi","Müşteri Takibi","Takvim"],
         },
       ],
     },
@@ -141,7 +141,7 @@ export const translations = {
       successTitle: "Mesajınız iletildi!",
       successDesc: "En kısa sürede size döneceğim.",
       links: [
-        { label: "E-posta", value: "azdakdag1@gmail.com" },
+        { label: "E-posta", value: "iletisim@azatakdag.com" },
         { label: "GitHub", value: "github.com/Akdag94" },
         { label: "LinkedIn", value: "azat-akdağ" },
         { label: "Instagram", value: "@azadakdgg" },
@@ -213,6 +213,12 @@ export const translations = {
       internalLabel: "Internal system — link not shared",
       items: [
         {
+          name: "Plankur",
+          category: "SaaS / Scheduling",
+          description: "A web-based appointment tracking system I built for businesses: appointment, customer and calendar management. Running in production.",
+          highlights: ["Appointment Management","Customer Tracking","Calendar"],
+        },
+        {
           name: "Greennova",
           category: "AgriTech / Web",
           description: "Greennova's digital face. I develop and maintain the website and manage all of the company's IT processes and digital infrastructure.",
@@ -235,12 +241,6 @@ export const translations = {
           category: "POS / Digital Menu",
           description: "A digital menu and ordering system I built for a poolside café: categorized product management, visual menu and pricing. Live in production.",
           highlights: ["Digital Menu","Ordering & POS","Live"],
-        },
-        {
-          name: "Plankur",
-          category: "SaaS / Scheduling",
-          description: "A web-based appointment tracking system I built for businesses: appointment, customer and calendar management. Running in production.",
-          highlights: ["Appointment Management","Customer Tracking","Calendar"],
         },
       ],
     },
@@ -295,7 +295,7 @@ export const translations = {
       successTitle: "Message sent!",
       successDesc: "I'll get back to you as soon as possible.",
       links: [
-        { label: "Email", value: "azdakdag1@gmail.com" },
+        { label: "Email", value: "iletisim@azatakdag.com" },
         { label: "GitHub", value: "github.com/Akdag94" },
         { label: "LinkedIn", value: "azat-akdağ" },
         { label: "Instagram", value: "@azadakdgg" },
@@ -367,6 +367,12 @@ export const translations = {
       internalLabel: "Sistema interno — enlace no compartido",
       items: [
         {
+          name: "Plankur",
+          category: "SaaS / Citas",
+          description: "Sistema web de seguimiento de citas para empresas: gestión de citas, clientes y calendario. Funcionando en producción.",
+          highlights: ["Gestión de Citas","Seguimiento de Clientes","Calendario"],
+        },
+        {
           name: "Greennova",
           category: "AgriTech / Web",
           description: "La cara digital de Greennova. Desarrollo y mantengo el sitio web y gestiono todos los procesos informáticos e infraestructura digital de la empresa.",
@@ -389,12 +395,6 @@ export const translations = {
           category: "POS / Menú Digital",
           description: "Sistema de menú digital y pedidos que construí para un café junto a la piscina: gestión de productos por categorías, menú visual y precios. En producción.",
           highlights: ["Menú Digital","Pedidos & POS","En Vivo"],
-        },
-        {
-          name: "Plankur",
-          category: "SaaS / Citas",
-          description: "Sistema web de seguimiento de citas para empresas: gestión de citas, clientes y calendario. Funcionando en producción.",
-          highlights: ["Gestión de Citas","Seguimiento de Clientes","Calendario"],
         },
       ],
     },
@@ -449,7 +449,7 @@ export const translations = {
       successTitle: "¡Mensaje enviado!",
       successDesc: "Te responderé lo antes posible.",
       links: [
-        { label: "Correo", value: "azdakdag1@gmail.com" },
+        { label: "Correo", value: "iletisim@azatakdag.com" },
         { label: "GitHub", value: "github.com/Akdag94" },
         { label: "LinkedIn", value: "azat-akdağ" },
         { label: "Instagram", value: "@azadakdgg" },
@@ -521,6 +521,12 @@ export const translations = {
       internalLabel: "نظام داخلي — الرابط غير متاح",
       items: [
         {
+          name: "Plankur",
+          category: "SaaS / مواعيد",
+          description: "نظام ويب لتتبع المواعيد للشركات: إدارة المواعيد والعملاء والتقويم. يعمل في بيئة الإنتاج.",
+          highlights: ["إدارة المواعيد","متابعة العملاء","التقويم"],
+        },
+        {
           name: "Greennova",
           category: "تقنية زراعية / ويب",
           description: "الواجهة الرقمية لشركة Greennova. أطوّر الموقع وأصونه، وأدير جميع عمليات تقنية المعلومات والبنية الرقمية للشركة.",
@@ -543,12 +549,6 @@ export const translations = {
           category: "نقاط بيع / قائمة رقمية",
           description: "نظام قائمة رقمية وطلبات بنيته لمقهى بجانب المسبح: إدارة منتجات مصنّفة وقائمة مرئية وتسعير. يعمل في الإنتاج.",
           highlights: ["قائمة رقمية","الطلبات ونقاط البيع","يعمل الآن"],
-        },
-        {
-          name: "Plankur",
-          category: "SaaS / مواعيد",
-          description: "نظام ويب لتتبع المواعيد للشركات: إدارة المواعيد والعملاء والتقويم. يعمل في بيئة الإنتاج.",
-          highlights: ["إدارة المواعيد","متابعة العملاء","التقويم"],
         },
       ],
     },
@@ -603,7 +603,7 @@ export const translations = {
       successTitle: "تم إرسال رسالتك!",
       successDesc: "سأعود إليك في أقرب وقت ممكن.",
       links: [
-        { label: "البريد الإلكتروني", value: "azdakdag1@gmail.com" },
+        { label: "البريد الإلكتروني", value: "iletisim@azatakdag.com" },
         { label: "GitHub", value: "github.com/Akdag94" },
         { label: "LinkedIn", value: "azat-akdağ" },
         { label: "Instagram", value: "@azadakdgg" },
@@ -622,7 +622,7 @@ export type Translations = (typeof translations)[Lang];
 
 // Sosyal / harici linkler — dile bağlı olmadığından çeviri nesnesinin dışında.
 export const socialLinks = {
-  email: "mailto:azdakdag1@gmail.com",
+  email: "mailto:iletisim@azatakdag.com",
   github: "https://github.com/Akdag94",
   linkedin: "https://www.linkedin.com/in/azat-akda%C4%9F-816525331/",
   instagram: "https://www.instagram.com/azadakdgg",

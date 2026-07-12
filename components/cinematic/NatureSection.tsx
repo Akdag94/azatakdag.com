@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { useLang } from "@/context/LanguageContext";
 
 // Drone çekiminden çıkarılmış kare dizisi, scroll'a bağlı olarak canvas'a
@@ -25,8 +24,6 @@ export function NatureSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      registerShaderMood(section, { intensity: 0.1, yScale: 0.5, distortion: 0.05 });
 
       const mm = gsap.matchMedia();
 
@@ -116,6 +113,10 @@ export function NatureSection() {
           );
           const bars = section.querySelectorAll<HTMLElement>("[data-letterbox]");
 
+          // Pin boyunca deneyim TÜM ekranı kaplar: navbar pin başında gizlenir,
+          // pin çözülür çözülmez geri gelir.
+          const header = document.querySelector<HTMLElement>("header");
+
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: section,
@@ -124,6 +125,15 @@ export function NatureSection() {
               pin: true,
               scrub: 1,
               anticipatePin: 1,
+              onToggle: (self) => {
+                if (!header) return;
+                gsap.to(
+                  header,
+                  self.isActive
+                    ? { yPercent: -110, autoAlpha: 0, duration: 0.4, ease: "power2.in", overwrite: "auto" }
+                    : { yPercent: 0, autoAlpha: 1, duration: 0.45, ease: "power2.out", overwrite: "auto" }
+                );
+              },
             },
           });
 
@@ -142,8 +152,8 @@ export function NatureSection() {
           const windows: [number, number][] = [
             [0.08, 0.3],
             [0.32, 0.52],
-            [0.54, 0.76],
-            [0.8, 1.0],
+            [0.54, 0.74],
+            [0.78, 1.0],
           ];
           beats.forEach((beat, i) => {
             const [a, b] = windows[i % windows.length];
@@ -159,8 +169,8 @@ export function NatureSection() {
             }
           });
 
-          // Çıkış: son beat kalırken görüntü hafifçe kararır, siteye geri döneriz.
-          tl.to(stage, { filter: "brightness(0.75)", duration: 0.06, ease: "none" }, 0.94);
+          // Karartma yok: manzara parlaklığını koruyarak yukarı kayar,
+          // sonraki bölüm hemen devralır.
 
           return () => {
             ro.disconnect();

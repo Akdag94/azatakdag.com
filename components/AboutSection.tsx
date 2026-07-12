@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { BadgeCheck } from "lucide-react";
 import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/gsap";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { SectionHeading } from "@/components/cinematic/SectionHeading";
 import { useLang } from "@/context/LanguageContext";
 
@@ -19,8 +18,6 @@ export function AboutSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      registerShaderMood(section, { intensity: 0.25, yScale: 0.45, distortion: 0.05 });
 
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -128,7 +125,7 @@ export function AboutSection() {
   );
 
   return (
-    <section id="about" ref={sectionRef} className="relative bg-[#050505] px-6 py-24 md:py-36">
+    <section id="about" ref={sectionRef} className="relative px-6 py-24 md:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading tag={about.tag} heading={about.heading} />
 

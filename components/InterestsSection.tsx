@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { shaderState } from "@/lib/shader-state";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { SectionHeading } from "@/components/cinematic/SectionHeading";
 import { useLang } from "@/context/LanguageContext";
 
@@ -16,8 +15,6 @@ export function InterestsSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      registerShaderMood(section, { intensity: 0.45, yScale: 0.6, distortion: 0.07 });
 
       const isRTL = document.documentElement.dir === "rtl";
       const dir = isRTL ? -1 : 1;
@@ -84,7 +81,7 @@ export function InterestsSection() {
     <section
       id="interests"
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#050505] py-24 md:py-36"
+      className="relative overflow-hidden pb-24 pt-10 md:pb-36 md:pt-14"
     >
       {/* Zıt yönlü dev tipografi bantları */}
       <div className="pointer-events-none mb-20 flex select-none flex-col gap-2 md:mb-28" aria-hidden>
@@ -104,7 +101,7 @@ export function InterestsSection() {
             <span
               key={`b-${i}`}
               className="whitespace-nowrap px-6 text-[11vw] font-extrabold leading-none tracking-tight md:text-[6.5vw]"
-              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.25)", color: "transparent" }}
+              style={{ WebkitTextStroke: "1px rgba(167,243,208,0.3)", color: "transparent" }}
             >
               {title}
               <span className="px-6" style={{ WebkitTextStroke: "0", color: "rgba(255,255,255,0.2)" }}>·</span>
@@ -121,7 +118,7 @@ export function InterestsSection() {
             <div
               key={item.title}
               data-interest-card
-              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06]"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/30 hover:bg-emerald-400/[0.05]"
             >
               <span className="text-3xl">{item.emoji}</span>
               <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>

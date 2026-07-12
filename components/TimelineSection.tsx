@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { SectionHeading } from "@/components/cinematic/SectionHeading";
 import { useLang } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
@@ -16,8 +15,6 @@ export function TimelineSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      registerShaderMood(section, { intensity: 0.35, yScale: 0.55, distortion: 0.06 });
 
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -82,7 +79,7 @@ export function TimelineSection() {
   const isRTL = lang === "ar";
 
   return (
-    <section id="timeline" ref={sectionRef} className="relative overflow-hidden bg-[#050505] px-6 py-24 md:py-36">
+    <section id="timeline" ref={sectionRef} className="relative overflow-hidden px-6 py-24 md:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <SectionHeading
           tag={timeline.tag}
@@ -96,7 +93,7 @@ export function TimelineSection() {
             data-line
             aria-hidden
             className={cn(
-              "absolute top-0 h-full w-px bg-white/20",
+              "absolute top-0 h-full w-px bg-emerald-200/25",
               isRTL ? "right-4 md:right-1/2" : "left-4 md:left-1/2"
             )}
             style={{ transform: "scaleY(0)" }}
@@ -123,7 +120,7 @@ export function TimelineSection() {
                     data-dot
                     aria-hidden
                     className={cn(
-                      "absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.6)]",
+                      "absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-emerald-200 shadow-[0_0_20px_rgba(110,231,183,0.55)]",
                       isRTL
                         ? "right-4 translate-x-1/2 md:right-1/2"
                         : "left-4 -translate-x-1/2 md:left-1/2"

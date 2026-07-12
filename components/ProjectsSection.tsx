@@ -2,47 +2,55 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Lock } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { registerShaderMood } from "@/components/cinematic/shader-mood";
 import { SectionHeading } from "@/components/cinematic/SectionHeading";
 import { useLang } from "@/context/LanguageContext";
 
-const projectMeta = [
+// Yalnızca Plankur dışa link verir; diğer projeler link göstermez.
+const projectMeta: {
+  url: string | null;
+  shortUrl: string | null;
+  image: string | null;
+  video: string | null;
+  poster?: string;
+  accent: string;
+}[] = [
   {
-    url: "https://greennovatarim.com",
-    shortUrl: "greennovatarim.com",
-    internal: false,
+    url: "https://plankur.com",
+    shortUrl: "plankur.com",
+    image: null,
+    video: "/plankur.mp4",
+    poster: "/plankur-poster.webp",
+    accent: "text-cyan-400 border-cyan-400/30",
+  },
+  {
+    url: null,
+    shortUrl: null,
     image: "/greennova.webp",
+    video: null,
     accent: "text-green-400 border-green-400/30",
   },
   {
     url: null,
     shortUrl: null,
-    internal: true,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop",
+    video: null,
     accent: "text-blue-400 border-blue-400/30",
   },
   {
-    url: "https://azap.online",
-    shortUrl: "azap.online",
-    internal: false,
+    url: null,
+    shortUrl: null,
     image: "/azap.webp",
+    video: null,
     accent: "text-purple-400 border-purple-400/30",
   },
   {
     url: null,
     shortUrl: null,
-    internal: false,
     image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=800&fit=crop",
+    video: null,
     accent: "text-amber-400 border-amber-400/30",
-  },
-  {
-    url: null,
-    shortUrl: null,
-    internal: false,
-    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1200&h=800&fit=crop",
-    accent: "text-cyan-400 border-cyan-400/30",
   },
 ];
 
@@ -58,8 +66,6 @@ export function ProjectsSection() {
       const track = section.querySelector<HTMLElement>("[data-track]");
       const progress = section.querySelector<HTMLElement>("[data-progress]");
       if (!track) return;
-
-      registerShaderMood(section, { intensity: 0.15, yScale: 0.35, distortion: 0.03 });
 
       const isRTL = document.documentElement.dir === "rtl";
       const mm = gsap.matchMedia();
@@ -143,7 +149,7 @@ export function ProjectsSection() {
   );
 
   return (
-    <section id="projects" ref={sectionRef} className="relative overflow-hidden bg-[#050505]">
+    <section id="projects" ref={sectionRef} className="relative overflow-hidden">
       <div className="mx-auto w-full max-w-6xl px-6 pt-24 md:pt-28">
         <SectionHeading
           tag={projects.tag}
@@ -151,7 +157,7 @@ export function ProjectsSection() {
           description={projects.description}
         />
         <div className="mt-10 hidden h-px w-full bg-white/10 md:block">
-          <div data-progress className="h-px w-full bg-white/60" style={{ transform: "scaleX(0)" }} />
+          <div data-progress className="h-px w-full bg-emerald-300/70" style={{ transform: "scaleX(0)" }} />
         </div>
       </div>
 
@@ -194,6 +200,18 @@ export function ProjectsSection() {
                     {project.description}
                   </p>
 
+                  {meta.url ? (
+                    <a
+                      href={meta.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20"
+                    >
+                      {meta.shortUrl}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  ) : null}
+
                   <div className="mt-6 flex flex-wrap gap-2">
                     {(project.highlights as readonly string[]).map((h) => (
                       <span
@@ -205,37 +223,34 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
-                  <div className="mt-8">
-                    {meta.url ? (
-                      <a
-                        href={meta.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors hover:text-white"
-                      >
-                        {meta.shortUrl}
-                        <ArrowUpRight className="h-4 w-4" />
-                      </a>
-                    ) : meta.internal ? (
-                      <span className="inline-flex items-center gap-2 text-sm text-neutral-500">
-                        <Lock className="h-3.5 w-3.5" />
-                        {projects.internalLabel}
-                      </span>
-                    ) : null}
-                  </div>
                 </div>
 
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
-                  <div data-panel-img className="absolute inset-[-10%]">
-                    <Image
-                      src={meta.image}
-                      alt={project.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover"
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-black">
+                  {meta.video ? (
+                    <video
+                      src={meta.video}
+                      poster={meta.poster}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
-                  </div>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  ) : meta.image ? (
+                    <>
+                      <div data-panel-img className="absolute inset-[-10%]">
+                        <Image
+                          src={meta.image}
+                          alt={project.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </>
+                  ) : null}
                 </div>
               </div>
             </article>

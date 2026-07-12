@@ -128,7 +128,7 @@ export function Navbar() {
       <div
         data-progress-bar
         aria-hidden
-        className="absolute bottom-0 left-0 h-px w-full bg-white/50"
+        className="absolute bottom-0 left-0 h-px w-full bg-emerald-300/70"
         style={{ transform: "scaleX(0)" }}
       />
     </header>

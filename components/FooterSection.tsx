@@ -63,7 +63,7 @@ export function FooterSection() {
 
   return (
     <div ref={wrapRef} className="relative h-[70vh] md:h-[60vh]">
-      <footer className="sticky top-[30vh] flex h-[70vh] flex-col justify-between overflow-hidden bg-black px-6 pt-16 md:top-[40vh] md:h-[60vh]">
+      <footer className="sticky top-[30vh] flex h-[70vh] flex-col justify-between overflow-hidden bg-[#010302] px-6 pt-16 md:top-[40vh] md:h-[60vh]">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-start">
             <div data-footer-fade className="max-w-sm">
