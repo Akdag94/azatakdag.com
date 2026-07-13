@@ -89,7 +89,11 @@ export function HeroSection() {
         },
         (ctx) => {
           const { full } = ctx.conditions as { full: boolean; desktop: boolean };
-          if (!full) return; // reduce: statik sahne
+          if (!full) {
+            // reduce: statik sahne — CSS ile gizli başlayan metinleri aç.
+            gsap.set([title, ...section.querySelectorAll("[data-hero-fade]")], { opacity: 1 });
+            return;
+          }
 
           const { desktop } = ctx.conditions as { desktop: boolean };
 
@@ -114,19 +118,24 @@ export function HeroSection() {
             gsap.fromTo(front, { scale: 1.07 }, { scale: 1.14, duration: 26, ease: "sine.inOut", yoyo: true, repeat: -1 });
           }
 
-          // Açılış: sahne karanlıktan aydınlanır — isim yok.
+          // Açılış: sahne loş başlayıp hızla aydınlanır — siyah ekran hissi
+          // vermeyecek kadar kısa ve parlak.
           if (!introPlayed.current) {
             introPlayed.current = true;
             gsap.fromTo(
               [bg, front].filter(Boolean),
-              { filter: "brightness(0.1) blur(8px)" },
-              { filter: "brightness(1) blur(0px)", duration: 2.4, ease: "power2.inOut" }
+              { filter: "brightness(0.45) blur(4px)" },
+              { filter: "brightness(1) blur(0px)", duration: 1.2, ease: "power2.out" }
             );
-            gsap.from("[data-hero-hint]", { opacity: 0, duration: 1.2, delay: 1.6 });
+            gsap.from("[data-hero-hint]", { opacity: 0, duration: 1, delay: 0.8 });
           }
 
-          // Başlangıç durumları.
-          gsap.set(pieces, { yPercent: 135 });
+          // Başlangıç durumları. Başlık CSS'te opacity-0 başlar (hydration
+          // öncesi flaşı önler); harfler konumlandıktan sonra görünür yapılır.
+          // Mobilde ön ağaç katmanı aşağı kaymış harfleri örtemediğinden
+          // harfler şeffaf başlar, yükselirken belirir.
+          gsap.set(pieces, { yPercent: 135, autoAlpha: desktop ? 1 : 0 });
+          gsap.set(title, { opacity: 1 });
           const fades = section.querySelectorAll("[data-hero-fade]");
           gsap.set(fades, { opacity: 0, y: 24 });
           const words = gsap.utils.toArray<HTMLElement>(section.querySelectorAll("[data-hero-role]"));
@@ -148,7 +157,7 @@ export function HeroSection() {
           tl.to("[data-hero-hint]", { opacity: 0, y: -20, duration: 0.05 }, 0);
 
           // 2) Harfler ağaçların arasından tek tek yükselir.
-          tl.to(pieces, { yPercent: 0, duration: 0.14, stagger: 0.02, ease: "power2.out" }, 0.05);
+          tl.to(pieces, { yPercent: 0, autoAlpha: 1, duration: 0.14, stagger: 0.02, ease: "power2.out" }, 0.05);
 
           // 3) Şimşekler: her biri o an üretilen benzersiz, çok segmentli
           //    kanal — kökten uca akarak çizilir, dalları gecikmeli ayrılır,
@@ -260,7 +269,7 @@ export function HeroSection() {
         <h1
           key={lang} // SplitText DOM'u böldüğünden dil değişiminde sıfırdan kurulmalı
           data-hero-title
-          className="text-white font-extrabold leading-[0.95] tracking-tighter"
+          className="text-white font-extrabold leading-[0.95] tracking-tighter opacity-0"
           style={{ fontSize: "clamp(2.5rem, 12vw, 11rem)" }}
         >
           {t.hero.title1} {t.hero.title2}
@@ -290,7 +299,7 @@ export function HeroSection() {
         className="absolute inset-x-0 top-[56%] z-30 flex w-full flex-col items-center px-6 text-center md:top-[58%]"
       >
         <div
-          className="relative h-[1.5em] w-full overflow-hidden text-2xl font-semibold text-emerald-100/90 md:text-4xl"
+          className="relative h-[1.5em] w-full overflow-hidden text-2xl font-semibold text-emerald-100/90 opacity-0 md:text-4xl"
           data-hero-fade
           aria-label={t.hero.roles.join(" ")}
         >
@@ -305,10 +314,10 @@ export function HeroSection() {
             </span>
           ))}
         </div>
-        <p data-hero-fade className="mt-6 max-w-xl text-base font-light text-neutral-200 md:text-lg" style={{ textShadow: "0 2px 18px rgba(0,0,0,0.8)" }}>
+        <p data-hero-fade className="mt-6 max-w-xl text-base font-light text-neutral-200 opacity-0 md:text-lg" style={{ textShadow: "0 2px 18px rgba(0,0,0,0.8)" }}>
           {t.hero.subtitle}
         </p>
-        <p data-hero-fade className="mt-3 max-w-lg text-sm text-neutral-300" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.8)" }}>
+        <p data-hero-fade className="mt-3 max-w-lg text-sm text-neutral-300 opacity-0" style={{ textShadow: "0 2px 14px rgba(0,0,0,0.8)" }}>
           {t.hero.description}
         </p>
       </div>

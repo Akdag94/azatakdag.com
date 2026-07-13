@@ -53,7 +53,9 @@ export function NatureSection() {
           const playhead = { frame: 0 };
           let lastDrawn = -1;
 
-          const dpr = Math.min(window.devicePixelRatio || 1, desktop ? 1.5 : 1);
+          // Mobilde ekranlar 2-3x yoğunlukta: dpr 1'e sabitlemek görüntüyü
+          // bulanıklaştırıyordu. Kare çözünürlüğünün taşıyabildiği kadar izin ver.
+          const dpr = Math.min(window.devicePixelRatio || 1, desktop ? 1.5 : 2);
 
           const draw = () => {
             // İstenen kare henüz inmediyse, ondan önceki en yakın inmiş kareyi çiz.
@@ -82,6 +84,8 @@ export function NatureSection() {
           const resize = () => {
             canvas.width = Math.round(canvas.clientWidth * dpr);
             canvas.height = Math.round(canvas.clientHeight * dpr);
+            // canvas.width ataması context durumunu sıfırlar — her seferinde tazele.
+            context.imageSmoothingQuality = "high";
             lastDrawn = -1;
             draw();
           };
@@ -186,10 +190,8 @@ export function NatureSection() {
       <div className="relative flex h-screen w-full items-center justify-center overflow-hidden">
         {/* Görüntü sahnesi */}
         <div data-nature-stage className="absolute inset-0 will-change-transform">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url(/nature/poster.jpg)" }}
-          />
+          {/* Poster: mobilde dikey, masaüstünde yatay kırpım */}
+          <div className="absolute inset-0 bg-cover bg-center bg-[url(/nature/poster-mobile.jpg)] md:bg-[url(/nature/poster.jpg)]" />
           <canvas data-nature-canvas className="absolute inset-0 h-full w-full" />
           {/* Vinyet + okunabilirlik skrimi */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(0,0,0,0.55)_100%)]" />
